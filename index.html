@@ -148,15 +148,15 @@ const launchLog = [];  // {t, xFrac}
 
 // one show: [launchTime s, xFrac, peakFrac, color] — unhurried cadence
 const SHOW = [
-  [0.70, 0.20, 0.30, '#FF4D5E'],
-  [1.55, 0.80, 0.24, '#5B8DEF'],
-  [2.40, 0.50, 0.15, '#FFD166'],
-  [3.25, 0.32, 0.38, '#38B2AC'],
-  [4.05, 0.68, 0.30, '#FFFFFF'],
-  [4.80, 0.10, 0.22, '#5B8DEF'],
-  [5.50, 0.90, 0.34, '#FF4D5E']
+  [0.90, 0.20, 0.30, '#FF4D5E'],
+  [2.00, 0.80, 0.24, '#5B8DEF'],
+  [3.10, 0.50, 0.15, '#FFD166'],
+  [4.20, 0.32, 0.38, '#38B2AC'],
+  [5.20, 0.68, 0.30, '#FFFFFF'],
+  [6.20, 0.10, 0.22, '#5B8DEF'],
+  [7.10, 0.90, 0.34, '#FF4D5E']
 ];
-const CYCLE = 6.6;
+const CYCLE = 8.8;
 
 let simT = 0;
 let nextShowAt = 0;
@@ -167,14 +167,14 @@ function queueShow(offset) {
   pending.sort((a, b) => a.t - b.t);
 }
 
-function burst(x, y, color, n = 90, power = 4.0, slow = false) {
+function burst(x, y, color, n = 90, power = 3.4, slow = false) {
   for (let i = 0; i < n; i++) {
     const a = (i / n) * Math.PI * 2 + rand() * 0.12;
     const v = power * (0.35 + rand() * 0.65);
     sparks.push({
       x, y,
       vx: Math.cos(a) * v, vy: Math.sin(a) * v,
-      life: 1, decay: (slow ? 0.003 : 0.0045) + rand() * (slow ? 0.003 : 0.0045),
+      life: 1, decay: (slow ? 0.0018 : 0.0028) + rand() * (slow ? 0.0018 : 0.0028),
       color, tw: rand() * Math.PI * 2
     });
   }
@@ -184,7 +184,7 @@ function stepSparks() {
   for (let i = sparks.length - 1; i >= 0; i--) {
     const p = sparks[i];
     p.x += p.vx; p.y += p.vy;
-    p.vy += 0.016; p.vx *= 0.989; p.vy *= 0.989;
+    p.vy += 0.010; p.vx *= 0.992; p.vy *= 0.992;
     p.life -= p.decay;
     if (p.life <= 0) sparks.splice(i, 1);
   }
@@ -193,14 +193,14 @@ function stepSparks() {
 // live page opens with the sky already in bloom
 function prewarm() {
   const spots = [
-    [0.22, 0.30, '#FF4D5E', 100, 28],
-    [0.78, 0.24, '#5B8DEF', 100, 24],
-    [0.50, 0.15, '#FFD166', 110, 22],
-    [0.10, 0.44, '#38B2AC', 70, 18],
-    [0.90, 0.42, '#FFFFFF', 70, 14]
+    [0.22, 0.30, '#FF4D5E', 100, 45],
+    [0.78, 0.24, '#5B8DEF', 100, 38],
+    [0.50, 0.15, '#FFD166', 110, 35],
+    [0.10, 0.44, '#38B2AC', 70, 28],
+    [0.90, 0.42, '#FFFFFF', 70, 22]
   ];
   for (const [xf, yf, c, n, steps] of spots) {
-    burst(xf * W, yf * H, c, n, 4.0, true);
+    burst(xf * W, yf * H, c, n, 3.4, true);
     for (let k = 0; k < steps; k++) stepSparks();
   }
 }
@@ -220,7 +220,7 @@ function tick() { // one 60 fps simulation step
     rockets.push({
       x: L.xf * W, y: H + 8,
       peak: L.pf * H, color: L.c,
-      vy: -(H * 0.0082 + rand() * 1.4)
+      vy: -(H * 0.0062 + rand() * 1.0)
     });
     launchLog.push({ t: simT, xFrac: L.xf });
   }
@@ -267,7 +267,7 @@ function draw() {
   }
 
   for (const p of sparks) {
-    const twinkle = 0.78 + 0.22 * Math.sin(simT * 9 + p.tw);
+    const twinkle = 0.80 + 0.20 * Math.sin(simT * 7 + p.tw);
     const a = Math.max(p.life, 0) * twinkle;
     ctx.globalAlpha = a * 0.35;
     ctx.fillStyle = p.color;

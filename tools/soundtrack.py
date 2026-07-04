@@ -5,7 +5,7 @@ import wave
 import numpy as np
 
 SR = 44100
-DUR = 11.0
+DUR = 15.0
 N = int(SR * DUR)
 rng = np.random.default_rng(1776)
 
@@ -38,13 +38,13 @@ R += 0.035 * np.roll(amb, 977) * env
 
 # launch whistles: soft ascending tone from launch to ~0.95s later
 for launch in logs["launches"]:
-    dur = 1.25
+    dur = 1.9
     n = int(dur * SR)
     tt = np.arange(n) / SR
-    f = 240 + 400 * (tt / dur) ** 1.4
+    f = 220 + 300 * (tt / dur) ** 1.4
     phase = 2 * np.pi * np.cumsum(f) / SR
     envw = np.sin(np.pi * tt / dur) ** 1.5
-    sig = 0.030 * np.sin(phase) * envw
+    sig = 0.026 * np.sin(phase) * envw
     add(sig, launch["t"], pan=launch["xFrac"])
 
 # bursts: boom + crackle
@@ -54,12 +54,12 @@ for b in logs["bursts"]:
     pan = min(max(b["xFrac"], 0.1), 0.9)
 
     # boom: descending low sine + low noise thump
-    dur = 1.1
+    dur = 1.4
     n = int(dur * SR)
     tt = np.arange(n) / SR
     f = 95 * np.exp(-tt * 3.0) + 34
     phase = 2 * np.pi * np.cumsum(f) / SR
-    envb = np.exp(-tt * 4.2)
+    envb = np.exp(-tt * 3.4)
     boom = np.sin(phase) * envb
     spec = np.fft.rfft(rng.normal(0, 1, n))
     fr = np.fft.rfftfreq(n, 1 / SR)
@@ -70,10 +70,10 @@ for b in logs["bursts"]:
     add(boom, b["t"], pan=pan)
 
     # crackle: sparse decaying impulse train, high-passed sparkle
-    dur = 2.2 if big else 1.3
+    dur = 3.2 if big else 1.9
     n = int(dur * SR)
     tt = np.arange(n) / SR
-    density = (55 if big else 28) * np.exp(-tt * 1.5)
+    density = (55 if big else 28) * np.exp(-tt * 1.0)
     impulses = rng.random(n) < density / SR * 40
     crack = np.zeros(n)
     idx = np.where(impulses)[0]
@@ -87,7 +87,7 @@ for b in logs["bursts"]:
     m = np.abs(crack).max()
     if m > 0:
         crack = crack / m
-    add((0.22 if big else 0.12) * crack * np.exp(-tt * 1.1), b["t"] + 0.06, pan=pan)
+    add((0.22 if big else 0.12) * crack * np.exp(-tt * 0.75), b["t"] + 0.06, pan=pan)
 
 # master: gentle limiter + fades
 mix = np.stack([L, R])
