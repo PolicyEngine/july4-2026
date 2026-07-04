@@ -23,10 +23,10 @@ Making the law computable is PolicyEngine's answer to that 238-year-old worry.
 
 No screen recording and no DevTools protocol — every frame is an independent headless Chrome screenshot of a deterministic simulation:
 
-1. `index.html?record=1` seeds the PRNG (mulberry32), so every load replays the identical 7.5-second show.
+1. `index.html?record=1` seeds the PRNG (mulberry32), so every load replays the identical 15-second show.
 2. `?frame=N` advances the simulation N output frames synchronously (two 60 fps ticks per 30 fps frame), then repaints on every animation frame — a late layout resize otherwise resets the canvas buffer and wipes a one-time draw.
 3. `tools/render-frame.sh` renders all 450 frames as parallel `chrome --headless --screenshot` runs; ffmpeg assembles them.
-4. `?frame=225&logs=1` dumps the burst/launch event log (`tools/logs.json`); `tools/soundtrack.py` synthesizes the audio from it with numpy — FFT-filtered noise booms, impulse-train crackles, whistles swept along each rocket's flight, stereo-panned to each burst's screen position.
+4. `?frame=450&logs=1` dumps the burst/launch event log (`tools/logs.json`); `tools/soundtrack.py` synthesizes the audio from it with numpy — FFT-filtered noise booms, impulse-train crackles, whistles swept along each rocket's flight, stereo-panned to each burst's screen position.
 
 ## Colors
 
