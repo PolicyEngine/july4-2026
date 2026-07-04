@@ -23,81 +23,95 @@
   .content {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
+    max-width: 900px;
+    padding: 0 24px;
   }
-  .wordmark {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 0.95;
-    font-weight: 800;
-    font-size: 96px;
-    letter-spacing: 0.06em;
-    animation: glow 2.6s ease-in-out infinite;
+  .logo {
+    width: 430px;
+    max-width: 70vw;
+    animation: glow 3.4s ease-in-out infinite;
   }
-  .policy { color: #FFFFFF; }
-  .engine {
-    color: #FF4D5E;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-  }
-  .engine::before {
-    content: "";
-    display: block;
-    width: 64px;
-    height: 10px;
-    background: #5B8DEF;
-    margin-top: 6px;
-  }
+  .logo svg { width: 100%; height: auto; display: block; }
   @keyframes glow {
-    0%, 100% { filter: drop-shadow(0 0 14px rgba(255, 77, 94, 0.35)) drop-shadow(0 0 26px rgba(91, 141, 239, 0.25)); }
-    50% { filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 48px rgba(91, 141, 239, 0.45)); }
+    0%, 100% { filter: drop-shadow(0 0 12px rgba(255, 77, 94, 0.30)) drop-shadow(0 0 24px rgba(91, 141, 239, 0.22)); }
+    50% { filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.40)) drop-shadow(0 0 40px rgba(91, 141, 239, 0.35)); }
+  }
+  .quote {
+    margin-top: 44px;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.93);
+    text-wrap: balance;
+  }
+  .quote .hl { color: #4FD1C5; }
+  .attribution {
+    margin-top: 18px;
+    font-size: 17px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
   }
   .dates {
-    font-size: 30px;
+    margin-top: 34px;
+    font-size: 22px;
     font-weight: 600;
-    letter-spacing: 0.3em;
-    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.28em;
+    color: rgba(255, 255, 255, 0.9);
   }
   .sub {
-    font-size: 19px;
+    margin-top: 10px;
+    font-size: 15px;
     font-weight: 500;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.62);
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.5);
   }
   .url {
     position: absolute;
-    bottom: 26px;
+    bottom: 22px;
     width: 100%;
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.42);
     z-index: 2;
   }
   @media (max-width: 720px) {
-    .wordmark { font-size: 52px; }
-    .dates { font-size: 20px; }
-    .sub { font-size: 14px; }
+    .quote { font-size: 18px; margin-top: 30px; }
+    .attribution { font-size: 14px; }
+    .dates { font-size: 16px; margin-top: 24px; }
+    .sub { font-size: 12px; }
   }
 </style>
 </head>
 <body>
 <canvas id="sky"></canvas>
 <div class="content">
-  <div class="wordmark">
-    <div class="policy">POLICY</div>
-    <div class="engine">ENGINE</div>
-  </div>
-  <div>
-    <div class="dates">1776 &nbsp;&#9733;&nbsp; 2026</div>
-    <div class="sub" style="margin-top: 14px;">250 years of American independence</div>
-  </div>
+  <div class="logo"><svg width="996" height="207" viewBox="0 0 996 207" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 88.0012V1.48316H36.523C43.8152 1.48316 49.6037 2.82213 53.8884 5.50008C58.1731 8.13682 61.2424 11.5357 63.0964 15.6968C64.9503 19.8168 65.8773 24.1221 65.8773 28.6128C65.8773 31.7439 65.3211 34.9162 64.2088 38.1297C63.1376 41.3021 61.4278 44.2272 59.0795 46.9051C56.7723 49.5419 53.7442 51.6842 49.9951 53.3322C46.2872 54.939 41.7965 55.7424 36.523 55.7424H16.0058V88.0012H0ZM16.0058 40.6635H37.2646C40.2309 40.6635 42.5998 40.0661 44.3714 38.8713C46.1842 37.6354 47.4819 36.0904 48.2647 34.2364C49.0475 32.3825 49.4389 30.5079 49.4389 28.6128C49.4389 26.8824 49.0681 25.0902 48.3265 23.2363C47.6261 21.3411 46.3902 19.755 44.6186 18.4778C42.847 17.2006 40.3957 16.562 37.2646 16.562H16.0058V40.6635Z" fill="#FFFFFF"/>
+<path d="M124.444 89.4844C117.522 89.4844 111.652 88.1866 106.831 85.5911C102.011 82.9543 98.1176 79.473 95.1513 75.1471C92.2261 70.78 90.0838 65.9597 88.7242 60.6862C87.3647 55.4128 86.6849 50.0981 86.6849 44.7422C86.6849 39.3863 87.3647 34.0716 88.7242 28.7981C90.0838 23.5247 92.2261 18.725 95.1513 14.3991C98.1176 10.032 102.011 6.55065 106.831 3.95511C111.652 1.31837 117.522 0 124.444 0C131.365 0 137.216 1.31837 141.995 3.95511C146.815 6.55065 150.688 10.032 153.613 14.3991C156.579 18.725 158.721 23.5247 160.04 28.7981C161.399 34.0716 162.079 39.3863 162.079 44.7422C162.079 50.0981 161.399 55.4128 160.04 60.6862C158.721 65.9597 156.579 70.78 153.613 75.1471C150.688 79.473 146.815 82.9543 141.995 85.5911C137.216 88.1866 131.365 89.4844 124.444 89.4844ZM124.444 74.0965C128.317 74.0965 131.592 73.1901 134.27 71.3774C136.989 69.5646 139.173 67.1957 140.82 64.2706C142.468 61.3454 143.663 58.1731 144.405 54.7536C145.146 51.2929 145.517 47.9557 145.517 44.7422C145.517 41.2815 145.146 37.8207 144.405 34.36C143.704 30.8581 142.53 27.6858 140.882 24.843C139.275 21.9591 137.113 19.652 134.393 17.9216C131.715 16.15 128.399 15.2643 124.444 15.2643C120.448 15.2643 117.09 16.1706 114.371 17.9834C111.693 19.7962 109.53 22.1857 107.882 25.152C106.275 28.0772 105.101 31.2701 104.359 34.7308C103.659 38.1503 103.309 41.4875 103.309 44.7422C103.309 48.1617 103.659 51.6018 104.359 55.0626C105.101 58.5233 106.296 61.6956 107.944 64.5796C109.633 67.4635 111.816 69.7706 114.494 71.501C117.213 73.2314 120.53 74.0965 124.444 74.0965Z" fill="#FFFFFF"/>
+<path d="M191.097 88.0012V1.48316H207.102V72.4898H248.94V88.0012H191.097Z" fill="#FFFFFF"/>
+<path d="M273.462 88.0012V1.48316H289.468V88.0012H273.462Z" fill="#FFFFFF"/>
+<path d="M355.333 89.3608C348.618 89.3608 342.932 88.063 338.277 85.4675C333.662 82.8719 329.934 79.4318 327.091 75.1471C324.29 70.8212 322.25 66.0215 320.973 60.748C319.696 55.4746 319.057 50.1393 319.057 44.7422C319.057 39.6335 319.696 34.463 320.973 29.2307C322.291 23.9573 324.372 19.1164 327.215 14.7081C330.099 10.2586 333.848 6.69485 338.462 4.0169C343.076 1.33897 348.7 0 355.333 0C360.813 0 365.571 0.926977 369.609 2.78093C373.646 4.59369 376.983 6.96264 379.62 9.88778C382.298 12.7717 384.337 15.7998 385.738 18.9722L371.401 25.6464C370 23.5041 368.558 21.6707 367.075 20.1463C365.592 18.5808 363.902 17.386 362.007 16.562C360.153 15.6968 357.929 15.2643 355.333 15.2643C351.625 15.2643 348.515 16.1706 346.001 17.9834C343.488 19.755 341.47 22.1033 339.945 25.0284C338.421 27.9536 337.329 31.1465 336.67 34.6072C336.011 38.0679 335.681 41.4463 335.681 44.7422C335.681 48.2441 336.052 51.7254 336.794 55.1862C337.535 58.6469 338.709 61.7986 340.316 64.6413C341.923 67.4841 343.962 69.7706 346.434 71.501C348.906 73.1902 351.872 74.0347 355.333 74.0347C359.041 74.0347 362.152 73.0048 364.665 70.9448C367.219 68.8437 369.485 66.1657 371.463 62.911L386.109 68.4111C384.255 72.4074 381.927 75.9917 379.126 79.164C376.324 82.3363 372.966 84.8289 369.052 86.6417C365.138 88.4544 360.565 89.3608 355.333 89.3608Z" fill="#FFFFFF"/>
+<path d="M434.776 88.0012V54.2592L403.073 1.48316H421.119L442.686 37.5736L464.316 1.48316H482.237L450.658 54.1356V88.0012H434.776Z" fill="#FFFFFF"/>
+<path d="M513.091 205.419V118.901H571V134.103H529.097V153.137H554.249V168.339H529.097V190.093H571V205.419H513.091Z" fill="#FF4D5E"/>
+<path d="M599.624 205.419V118.901H614.579L648.692 169.823C649.145 170.564 649.722 171.574 650.422 172.851C651.164 174.087 651.782 175.22 652.276 176.25C652.153 175.343 652.05 174.251 651.967 172.974C651.926 171.656 651.906 170.605 651.906 169.823V118.901H667.85V205.419H653.574L618.782 154.126C618.328 153.425 617.731 152.437 616.989 151.159C616.289 149.882 615.692 148.729 615.197 147.699C615.321 148.729 615.403 149.841 615.444 151.036C615.486 152.231 615.506 153.261 615.506 154.126V205.419H599.624Z" fill="#FF4D5E"/>
+<path d="M732.587 206.902C725.953 206.902 720.247 205.666 715.468 203.194C710.689 200.681 706.796 197.302 703.788 193.059C700.781 188.774 698.536 183.974 697.052 178.66C695.61 173.304 694.889 167.804 694.889 162.16C694.889 156.762 695.631 151.427 697.114 146.154C698.638 140.88 700.925 136.081 703.974 131.755C707.064 127.429 710.978 123.968 715.716 121.372C720.453 118.736 726.077 117.417 732.587 117.417C738.107 117.417 742.763 118.283 746.553 120.013C750.385 121.743 753.598 124.009 756.194 126.811C758.83 129.571 761.117 132.496 763.053 135.586L748.963 143.62C747.068 140.695 744.823 138.14 742.227 135.957C739.673 133.773 736.459 132.682 732.587 132.682C728.549 132.682 725.171 133.588 722.452 135.401C719.774 137.214 717.631 139.582 716.025 142.508C714.418 145.433 713.264 148.626 712.564 152.086C711.863 155.506 711.513 158.864 711.513 162.16C711.513 165.909 711.905 169.534 712.687 173.036C713.47 176.538 714.706 179.69 716.395 182.491C718.084 185.293 720.268 187.518 722.946 189.166C725.624 190.772 728.837 191.576 732.587 191.576C735.429 191.576 738.004 190.937 740.311 189.66C742.66 188.383 744.514 186.673 745.873 184.531C747.233 182.347 747.913 179.896 747.913 177.177V175.57H733.205V160.429H764.413V172.913C764.413 180.246 762.991 186.446 760.149 191.514C757.347 196.54 753.536 200.372 748.716 203.008C743.937 205.604 738.56 206.902 732.587 206.902Z" fill="#FF4D5E"/>
+<path d="M792.363 205.419V118.901H808.369V205.419H792.363Z" fill="#FF4D5E"/>
+<path d="M838.582 205.419V118.901H853.537L887.65 169.823C888.103 170.564 888.68 171.574 889.38 172.851C890.122 174.087 890.74 175.22 891.234 176.25C891.111 175.343 891.008 174.251 890.925 172.974C890.884 171.656 890.863 170.605 890.863 169.823V118.901H906.807V205.419H892.532L857.739 154.126C857.286 153.425 856.689 152.437 855.947 151.159C855.247 149.882 854.649 148.729 854.155 147.699C854.279 148.729 854.361 149.841 854.402 151.036C854.443 152.231 854.464 153.261 854.464 154.126V205.419H838.582Z" fill="#FF4D5E"/>
+<path d="M936.943 205.419V118.901H995V134.103H952.949V153.137H978.101V168.339H952.949V190.093H995V205.419H936.943Z" fill="#FF4D5E"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.10113 118.901H482.13V134.35H0.10113V118.901Z" fill="#7EA6F5" fill-opacity="0.3"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M513.03 72.5516H995.059V88.0012H513.03V72.5516Z" fill="#7EA6F5" fill-opacity="0.3"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M482.13 134.35V205.419H466.681V134.35H482.13Z" fill="#7EA6F5" fill-opacity="0.3"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M528.479 1.48317V72.5516H513.03V1.48317H528.479Z" fill="#7EA6F5" fill-opacity="0.3"/>
+</svg></div>
+  <div class="quote">&ldquo;It will be of little avail to the people, that the laws are made by men of their own choice, if the laws be so voluminous that they <span class="hl">cannot be read</span>, or so incoherent that they <span class="hl">cannot be understood</span>&hellip;&rdquo;</div>
+  <div class="attribution">&mdash; Federalist No. 62, 1788</div>
+  <div class="dates">1776 &nbsp;&#9733;&nbsp; 2026</div>
+  <div class="sub">250 years of American independence</div>
 </div>
 <div class="url">policyengine.org</div>
 <script>
@@ -122,9 +136,9 @@ resize();
 addEventListener('resize', resize);
 
 const stars = Array.from({ length: 130 }, () => ({
-  x: rand(), y: rand() * 0.75,
+  x: rand(), y: rand() * 0.8,
   r: rand() * 1.4 + 0.4, p: rand() * Math.PI * 2,
-  s: 0.6 + rand() * 1.6
+  s: 0.5 + rand() * 1.2
 }));
 
 const rockets = [];
@@ -132,17 +146,17 @@ const sparks = [];
 const burstLog = [];   // {t, xFrac, yFrac, color, n} — drives the soundtrack
 const launchLog = [];  // {t, xFrac}
 
-// one show: [launchTime s, xFrac, peakFrac, color]
+// one show: [launchTime s, xFrac, peakFrac, color] — unhurried cadence
 const SHOW = [
-  [0.50, 0.22, 0.30, '#FF4D5E'],
-  [1.10, 0.78, 0.26, '#5B8DEF'],
-  [1.70, 0.50, 0.18, '#FFD166'],
-  [2.30, 0.34, 0.36, '#38B2AC'],
-  [2.85, 0.66, 0.32, '#FFFFFF'],
-  [3.40, 0.12, 0.22, '#5B8DEF'],
-  [3.90, 0.88, 0.34, '#FF4D5E']
+  [0.70, 0.20, 0.30, '#FF4D5E'],
+  [1.55, 0.80, 0.24, '#5B8DEF'],
+  [2.40, 0.50, 0.15, '#FFD166'],
+  [3.25, 0.32, 0.38, '#38B2AC'],
+  [4.05, 0.68, 0.30, '#FFFFFF'],
+  [4.80, 0.10, 0.22, '#5B8DEF'],
+  [5.50, 0.90, 0.34, '#FF4D5E']
 ];
-const CYCLE = 4.6;
+const CYCLE = 6.6;
 
 let simT = 0;
 let nextShowAt = 0;
@@ -153,14 +167,14 @@ function queueShow(offset) {
   pending.sort((a, b) => a.t - b.t);
 }
 
-function burst(x, y, color, n = 90, power = 5.2, slow = false) {
+function burst(x, y, color, n = 90, power = 4.0, slow = false) {
   for (let i = 0; i < n; i++) {
     const a = (i / n) * Math.PI * 2 + rand() * 0.12;
     const v = power * (0.35 + rand() * 0.65);
     sparks.push({
       x, y,
       vx: Math.cos(a) * v, vy: Math.sin(a) * v,
-      life: 1, decay: (slow ? 0.005 : 0.008) + rand() * (slow ? 0.005 : 0.010),
+      life: 1, decay: (slow ? 0.003 : 0.0045) + rand() * (slow ? 0.003 : 0.0045),
       color, tw: rand() * Math.PI * 2
     });
   }
@@ -170,7 +184,7 @@ function stepSparks() {
   for (let i = sparks.length - 1; i >= 0; i--) {
     const p = sparks[i];
     p.x += p.vx; p.y += p.vy;
-    p.vy += 0.028; p.vx *= 0.985; p.vy *= 0.985;
+    p.vy += 0.016; p.vx *= 0.989; p.vy *= 0.989;
     p.life -= p.decay;
     if (p.life <= 0) sparks.splice(i, 1);
   }
@@ -179,14 +193,14 @@ function stepSparks() {
 // live page opens with the sky already in bloom
 function prewarm() {
   const spots = [
-    [0.24, 0.30, '#FF4D5E', 110, 14],
-    [0.76, 0.26, '#5B8DEF', 110, 12],
-    [0.50, 0.16, '#FFD166', 120, 11],
-    [0.13, 0.44, '#38B2AC', 80, 9],
-    [0.87, 0.42, '#FFFFFF', 80, 7]
+    [0.22, 0.30, '#FF4D5E', 100, 28],
+    [0.78, 0.24, '#5B8DEF', 100, 24],
+    [0.50, 0.15, '#FFD166', 110, 22],
+    [0.10, 0.44, '#38B2AC', 70, 18],
+    [0.90, 0.42, '#FFFFFF', 70, 14]
   ];
   for (const [xf, yf, c, n, steps] of spots) {
-    burst(xf * W, yf * H, c, n, 5.2, true);
+    burst(xf * W, yf * H, c, n, 4.0, true);
     for (let k = 0; k < steps; k++) stepSparks();
   }
 }
@@ -206,7 +220,7 @@ function tick() { // one 60 fps simulation step
     rockets.push({
       x: L.xf * W, y: H + 8,
       peak: L.pf * H, color: L.c,
-      vy: -(H * 0.011 + rand() * 2)
+      vy: -(H * 0.0082 + rand() * 1.4)
     });
     launchLog.push({ t: simT, xFrac: L.xf });
   }
@@ -219,7 +233,7 @@ function tick() { // one 60 fps simulation step
       burst(r.x, r.y, r.color);
       burstLog.push({ t: simT, xFrac: r.x / W, yFrac: r.y / H, color: r.color, n: 90 });
       if (rand() < 0.35) {
-        burst(r.x, r.y, '#FFFFFF', 30, 3);
+        burst(r.x, r.y, '#FFFFFF', 30, 2.4);
         burstLog.push({ t: simT, xFrac: r.x / W, yFrac: r.y / H, color: '#FFFFFF', n: 30 });
       }
       rockets.splice(i, 1);
@@ -233,7 +247,7 @@ function draw() {
   ctx.clearRect(0, 0, W, H);
 
   for (const s of stars) {
-    const a = 0.25 + 0.55 * (0.5 + 0.5 * Math.sin(simT * s.s + s.p));
+    const a = 0.25 + 0.5 * (0.5 + 0.5 * Math.sin(simT * s.s + s.p));
     ctx.globalAlpha = a;
     ctx.fillStyle = '#FFFFFF';
     ctx.beginPath();
@@ -248,21 +262,21 @@ function draw() {
     ctx.arc(r.x, r.y, 2.4, 0, Math.PI * 2);
     ctx.fill();
     ctx.globalAlpha = 0.35;
-    ctx.fillRect(r.x - 1, r.y + 4, 2, 14);
+    ctx.fillRect(r.x - 1, r.y + 4, 2, 12);
     ctx.globalAlpha = 1;
   }
 
   for (const p of sparks) {
-    const twinkle = 0.75 + 0.25 * Math.sin(simT * 18 + p.tw);
+    const twinkle = 0.78 + 0.22 * Math.sin(simT * 9 + p.tw);
     const a = Math.max(p.life, 0) * twinkle;
     ctx.globalAlpha = a * 0.35;
     ctx.fillStyle = p.color;
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 4.5, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 4.6, 0, Math.PI * 2);
     ctx.fill();
     ctx.globalAlpha = a;
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 2.1, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 2.15, 0, Math.PI * 2);
     ctx.fill();
   }
   ctx.globalAlpha = 1;
@@ -286,7 +300,7 @@ if (RECORD) {
       const pre = document.createElement('pre');
       pre.id = 'logs';
       pre.style.display = 'none';
-      pre.textContent = JSON.stringify({W, H, simT, sparks: sparks.length, rockets: rockets.length, iw: innerWidth, ih: innerHeight}) + '|' + window.getLogs();
+      pre.textContent = window.getLogs();
       document.body.appendChild(pre);
     }
   } else {

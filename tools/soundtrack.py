@@ -5,7 +5,7 @@ import wave
 import numpy as np
 
 SR = 44100
-DUR = 7.5
+DUR = 11.0
 N = int(SR * DUR)
 rng = np.random.default_rng(1776)
 
@@ -38,10 +38,10 @@ R += 0.035 * np.roll(amb, 977) * env
 
 # launch whistles: soft ascending tone from launch to ~0.95s later
 for launch in logs["launches"]:
-    dur = 0.95
+    dur = 1.25
     n = int(dur * SR)
     tt = np.arange(n) / SR
-    f = 260 + 520 * (tt / dur) ** 1.4
+    f = 240 + 400 * (tt / dur) ** 1.4
     phase = 2 * np.pi * np.cumsum(f) / SR
     envw = np.sin(np.pi * tt / dur) ** 1.5
     sig = 0.030 * np.sin(phase) * envw
@@ -70,10 +70,10 @@ for b in logs["bursts"]:
     add(boom, b["t"], pan=pan)
 
     # crackle: sparse decaying impulse train, high-passed sparkle
-    dur = 1.5 if big else 0.9
+    dur = 2.2 if big else 1.3
     n = int(dur * SR)
     tt = np.arange(n) / SR
-    density = (60 if big else 30) * np.exp(-tt * 2.2)
+    density = (55 if big else 28) * np.exp(-tt * 1.5)
     impulses = rng.random(n) < density / SR * 40
     crack = np.zeros(n)
     idx = np.where(impulses)[0]
@@ -87,7 +87,7 @@ for b in logs["bursts"]:
     m = np.abs(crack).max()
     if m > 0:
         crack = crack / m
-    add((0.22 if big else 0.12) * crack * np.exp(-tt * 1.6), b["t"] + 0.06, pan=pan)
+    add((0.22 if big else 0.12) * crack * np.exp(-tt * 1.1), b["t"] + 0.06, pan=pan)
 
 # master: gentle limiter + fades
 mix = np.stack([L, R])
