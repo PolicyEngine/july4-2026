@@ -10,6 +10,7 @@
 
 - `videos/fireworks-silent.mp4` — 15 s loop, 1080p, 30 fps, silent
 - `videos/fireworks-soundtrack.mp4` — same loop with a synthesized soundtrack: booms, crackles, and launch whistles timed to each burst
+- `videos/fireworks-music.mp4` — 30 s double loop scored with "Prairie Under Starlight" (generated with Suno), synthesized booms mixed underneath so the audio still lands on each visible burst
 
 ## Federalist No. 62 card
 
