@@ -39,3 +39,7 @@ No screen recording and no DevTools protocol — every frame is an independent h
 Made with PolicyEngine's commitment to evidence-based analysis — and to laws that can be read and understood.
 
 [policyengine.org](https://policyengine.org)
+
+## License
+
+Code in this repository is released under the [MIT License](LICENSE). Original text and figures are released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) with attribution to PolicyEngine. Third-party data and materials keep their own terms.
